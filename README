@@ -5,24 +5,5 @@ standard library support
 Status
 ------
 
-
-Compiling with haxe
--------------------
-
-You must add  -D nodejs to the compile line. 
-
-From the top directory
-
-haxe -cp . -D nodejs -js main.js -main tests.Main 
-
-to compile main.js
-
-and then to execute
-
-node main.js
-
-Compiling with haxed (a haxe package build, deploy and install tool)
---------------------------------------------------------------------
-
-haxed build nodejs
-
+FileSystem class mostly works.
+Generally handle with care.
