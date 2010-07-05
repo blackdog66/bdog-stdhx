@@ -28,25 +28,6 @@ package js.io;
 import js.Node;
 
 
-class FileInput extends haxe.io.Input {
-  public function new(fh:FileHandle) {
-
-  }
-  
-  public function eof():Bool { return false;}
-  public function seek(pos:Int,f:FileSeek):Void {}
-  public function tell():Int { return 1; }  
-}
-
-class FileOutput extends haxe.io.Output {
-  public function new(fh:FileHandle) {
-
-  }
-  
-  public function seek(pos:Int,f:FileSeek):Void {}
-  public function tell():Int { return 1; }  
-}
-
 enum FileHandle {
 }
 
@@ -89,11 +70,17 @@ class File {
     Node.fs.writeFileSync(dst,getContent(src));
   }
 
+  public static function getChar( echo : Bool ) : Int {
+    //return getch(echo);
+    return -1;
+  }
+
+  public static function stdin() {
+    //return new FileInput();
+  }
   
   /*
-  public static function stdin() {
-    return new FileInput();
-  }
+  
   
   public static function stdout() {
     return new FileOutput(file_stdout());

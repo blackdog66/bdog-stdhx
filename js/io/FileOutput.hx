@@ -37,11 +37,12 @@ class FileOutput extends haxe.io.Output {
 	}
 
 	public override function writeByte( c : Int ) {
-      try js.Node.fs.writeSync(__f,c,Node.BINARY) catch( e : Dynamic ) throw haxe.io.Error.Custom(e);
+    //try js.Node.fs.writeSync(__f,c,Node.BINARY) catch( e : Dynamic ) throw haxe.io.Error.Custom(e);
 	}
 
 	public override function writeBytes( s : haxe.io.Bytes, p : Int, l : Int ) : Int {
-      return try js.Node.fs.writeSync(__f,s.getData().toString,p,Node.BINARY) catch( e : Dynamic ) throw haxe.io.Error.Custom(e);
+    //return try js.Node.fs.writeSync(__f,s.getData().toString,p,Node.BINARY) catch( e : Dynamic ) throw haxe.io.Error.Custom(e);
+    return 0;
 	}
 
 	public override function flush() {
@@ -50,7 +51,7 @@ class FileOutput extends haxe.io.Output {
 
 	public override function close() {
 		super.close();
-		closeSync(__f);
+		//closeSync(__f);
 	}
 
 	public function seek( p : Int, pos : FileSeek ) {

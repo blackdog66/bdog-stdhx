@@ -23,7 +23,9 @@
  * DAMAGE.
  */
 package js.io;
+
 import js.io.File;
+import js.Node;
 
 /**
 	Use [neko.io.File.read] to create a [FileInput]
@@ -31,14 +33,18 @@ import js.io.File;
 class FileInput extends haxe.io.Input {
 
 	private var __f : FileHandle;
+  private var buf:Buffer;
 
 	public function new(f) {
 		__f = f;
+    buf = Node.newBuffer(512);
 	}
 
 	public override function readByte() : Int {
 		return try {
-			file_read_char(__f);
+			//Node.fs.readSync(__f,buf,0,1,null);
+      //return buf[0];
+      0;
 		} catch( e : Dynamic ) {
 			if( untyped __dollar__typeof(e) == __dollar__tarray )
 				throw new haxe.io.Eof();
@@ -49,7 +55,9 @@ class FileInput extends haxe.io.Input {
 
 	public override function readBytes( s : haxe.io.Bytes, p : Int, l : Int ) : Int {
 		return try {
-			file_read(__f,s.getData(),p,l);
+      //  Node.fs.readSync(__f,buf,0,
+                       //file_read(__f,s.getData(),p,l);
+       0;
 		} catch( e : Dynamic ) {
 			if( untyped __dollar__typeof(e) == __dollar__tarray )
 				throw new haxe.io.Eof();
@@ -59,30 +67,23 @@ class FileInput extends haxe.io.Input {
 	}
 
 	public override function close() {
-		super.close();
-		file_close(__f);
+		//Node.fs.close(__f);
+		//file_close(__f);
 	}
 
 	public function seek( p : Int, pos : FileSeek ) {
-		file_seek(__f,p,switch( pos ) { case SeekBegin: 0; case SeekCur: 1; case SeekEnd: 2; });
+		//file_seek(__f,p,switch( pos ) { case SeekBegin: 0; case SeekCur: 1; case SeekEnd: 2; });
 	}
 
 	public function tell() : Int {
-		return file_tell(__f);
+		//return file_tell(__f);
+    return 0;
 	}
 
 
 	public function eof() : Bool {
-		return file_eof(__f);
+		//return file_eof(__f);
+    return false;
 	}
-
-	private static var file_eof = neko.Lib.load("std","file_eof",1);
-
-	private static var file_read = neko.Lib.load("std","file_read",4);
-	private static var file_read_char = neko.Lib.load("std","file_read_char",1);
-
-	private static var file_close = neko.Lib.load("std","file_close",1);
-	private static var file_seek = neko.Lib.load("std","file_seek",3);
-	private static var file_tell = neko.Lib.load("std","file_tell",1);
 
 }
