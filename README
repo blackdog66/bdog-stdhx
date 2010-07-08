@@ -1,9 +1,12 @@
 
-bdog-stdjs used in addition to bdog-node provides haXe integration features and
-standard library support
+bdog-stdhx used in addition to bdog-node provides haXe integration features and
+standard library support. I was just bundling the js dir, but this can't live on it's own
+so the entire std dir is here.
 
 Status
 ------
 
-FileSystem class mostly works.
-Generally handle with care.
+In heavy dev use with care.
+
+Most of the file io stuff is done. Check js.File, js.FileSystem, js.io/* etc.
+
