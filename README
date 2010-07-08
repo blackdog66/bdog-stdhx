@@ -1,7 +1,27 @@
 
-bdog-stdhx used in addition to bdog-node provides haXe integration features and
-standard library support. I was just bundling the js dir, but this can't live on it's own
-so the entire std dir is here.
+bdog-stdhx provides haXe integration features and standard library support. I
+was just bundling the js dir, but this can't live on it's own so the entire std
+dir is here.
+
+NOTE
+----
+
+bdog-node contains 3 files from this project
+
+js/Node.hx
+js/Lib.hx
+js/Boot.hx
+
+they should be exactly the same as what's in here. The reason for this subset is to
+make it easier for people coming from javascript just to use bdog-node on it's own
+without the entire standard library which may seem like overload.
+
+This project then is to integrate Node.js deeply into the haXe infrastructure and hence
+touches many parts of the standard library.
+
+You should bdog-node to just get at the Node.js API.
+
+If you want full integration then use this lib.
 
 Status
 ------
