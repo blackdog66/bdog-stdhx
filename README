@@ -4,7 +4,7 @@ was just bundling the js dir, but this can't live on it's own so the entire std
 dir is here.
 
 I use git-svn rebase to sync this project with current haxe before uploading to
-github - so i should be fully compatible with latest haxe.
+github - so it should be fully compatible with latest haxe.
 
 NOTE
 ----
@@ -24,7 +24,7 @@ touches many parts of the standard library.
 
 You should bdog-node to just get at the Node.js API.
 
-If you want full integration then use this lib.
+If you want full integration then use this project instead
 
 Status
 ------
