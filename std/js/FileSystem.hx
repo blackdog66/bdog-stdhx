@@ -47,7 +47,7 @@ class FileSystem {
     return Node.fs.realpathSync(relpath);
   }
   
-  static function getFileKind(stat:js.Node.Stats) {
+  static function getFileKind(stat:js.Node.Stat) {
     if (stat.isBlockDevice()) return "block";
     if (stat.isCharacterDevice()) return "character";
     if (stat.isSymbolicLink()) return "symbolic";
