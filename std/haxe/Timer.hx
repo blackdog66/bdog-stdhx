@@ -52,9 +52,9 @@ class Timer {
 #elseif (js && nodejs)
       var
         me = this,
-        id = arr.length,
         fn = function() {Reflect.callMethod(me,Reflect.field(me,"run"),[]) ;};
 
+      id = arr.length;
       arr[id] = this;
         
       timerId = js.Node.setInterval(fn,time_ms,[]);
@@ -71,7 +71,7 @@ class Timer {
 		#elseif js
      #if !nodejs 
 			untyped window.clearInterval(timerId);
-      #else
+     #else
       js.Node.clearInterval(timerId);
       #end
 			arr[id] = null;
