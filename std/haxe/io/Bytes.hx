@@ -274,7 +274,6 @@ class Bytes {
 		return new Bytes(a.length,a);
 		#elseif nodejs
     var nb = js.Node.newBuffer(s,js.Node.UTF8);
-    trace("yes here");
     return new Bytes(nb.length,nb);
     #else
 		var a = new Array();
