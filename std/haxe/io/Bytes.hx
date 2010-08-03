@@ -24,6 +24,10 @@
  */
 package haxe.io;
 
+#if nodejs
+import js.Node;
+#end
+
 class Bytes {
 
 	public var length(default,null) : Int;
@@ -112,8 +116,8 @@ class Bytes {
 
     /* node slice does not return a copy, so need a blit(copy) */
     var
-      nb = js.Node.newBuffer(len),
-      slice:js.Node.Buffer = b.slice(pos,pos+len);
+      nb = Node.newBuffer(len),
+      slice:Buffer = b.slice(pos,pos+len);
 
     slice.copy(nb,0,0,len);
 		return new Bytes(len,nb);

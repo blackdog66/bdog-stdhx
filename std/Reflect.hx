@@ -184,7 +184,7 @@ class Reflect {
 			if( __dollar__typeof(o) != __dollar__tobject )
 				return new Array<String>();
 			else {
-				var a = __dollar__objfields(o);
+				var a : neko.NativeArray<Int> = __dollar__objfields(o);
 				var i = 0;
 				var l = __dollar__asize(a);
 				while( i < l ) {
@@ -390,8 +390,7 @@ class Reflect {
 		#elseif php
 			untyped __php__("return array(new _hx_lambda(array('f' => &$f), null, array('args'), 'return call_user_func($f, new _hx_array($args));'), 'makeArgs')");
 		#elseif cpp
-			//TODO:
-			return null;
+			return untyped __global__.__hxcpp_create_var_args(f);
 		#else
 			return null;
 		#end

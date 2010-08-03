@@ -42,7 +42,6 @@ class FileInput extends haxe.io.Input {
     bufOne = Node.newBuffer(1);
     pos = 0;
     size = Node.fs.fstatSync(__f).size;
-    trace("Size is "+size);
 	}
 
 	public override function readByte() : Int {

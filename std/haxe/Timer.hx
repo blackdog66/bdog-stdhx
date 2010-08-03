@@ -33,9 +33,6 @@ class Timer {
 	#if js
 	private static var arr = new Array<Timer>();
 	private var timerId : Int;
-  #if nodejs
-  private var interval:Int;
-  #end
 	#end
 
 	public function new( time_ms : Int ){
@@ -45,20 +42,11 @@ class Timer {
 		#elseif flash
 			var me = this;
 			id = untyped _global["setInterval"](function() { me.run(); },time_ms);
-#elseif (js && !nodejs)
+		#elseif js
 			id = arr.length;
 			arr[id] = this;
 			timerId = untyped window.setInterval("haxe.Timer.arr["+id+"].run();",time_ms);
-#elseif (js && nodejs)
-      var
-        me = this,
-        fn = function() {Reflect.callMethod(me,Reflect.field(me,"run"),[]) ;};
-
-      id = arr.length;
-      arr[id] = this;
-        
-      timerId = js.Node.setInterval(fn,time_ms,[]);
-    #end
+		#end
 	}
 
 	public function stop() {
@@ -69,11 +57,7 @@ class Timer {
 		#elseif flash
 			untyped _global["clearInterval"](id);
 		#elseif js
-     #if !nodejs 
 			untyped window.clearInterval(timerId);
-     #else
-      js.Node.clearInterval(timerId);
-      #end
 			arr[id] = null;
 			if( id > 100 && id == arr.length - 1 ) {
 				// compact array
